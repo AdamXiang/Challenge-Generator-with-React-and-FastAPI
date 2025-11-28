@@ -37,7 +37,21 @@ export function ChallengeGenerator() {
         </select>
       </div>
 
-      <button></button>
+      <button
+        onClick={generateChallenge}
+        disabled={isLoading || quota?.quota_remaining === 0}
+        className="generate-button"
+      >
+        {isLoading ? "Generating..." : "Generate Challenge"}
+      </button>
+
+      {error && (
+        <div className="error-message">
+          <p>{error}</p>
+        </div>
+      )}
+
+      {challenge && <MCQChallenge challenge={challenge} />}
     </div>
   );
 }
